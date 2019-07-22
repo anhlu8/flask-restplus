@@ -7,8 +7,10 @@ from ..config import key
 
 class User(db.Model):
     """ User Model for storing user related details """
+    # The user class inherits from db.Model class which declares the class as a model for sqlalchemy.
     __tablename__ = "user"
 
+    # creates the required columns for the user table.
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     email = db.Column(db.String(255), unique=True, nullable=False)
     registered_on = db.Column(db.DateTime, nullable=False)
@@ -21,11 +23,13 @@ class User(db.Model):
     def password(self):
         raise AttributeError('password: write-only field')
 
+    # a setter for the field password_hash and it uses flask-bcryptto generate a hash using the provided password.
     @password.setter
     def password(self, password):
         self.password_hash = flask_bcrypt.generate_password_hash(
             password).decode('utf-8')
 
+    # compares a given password with already savedpassword_hash.
     def check_password(self, password):
         return flask_bcrypt.check_password_hash(self.password_hash, password)
 

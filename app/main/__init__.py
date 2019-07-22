@@ -15,3 +15,8 @@ def create_app(config_name):
     flask_bcrypt.init_app(app)
 
     return app
+
+
+# The model package will contain all of our database models
+# The service package will contain all the business logic of our application
+# The controller package will contain all our application endpoints.

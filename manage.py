@@ -9,6 +9,7 @@ from app.main.model import userModel as user
 from app.main.model import blacklistModel as blacklist
 from app import blueprint
 
+# calls the create_app function we created in __init__.py in main folder to create the application instance with the required parameter from the environment variable which can be either of the following - dev, prod, test. If none is set in the environment variable, the default dev is used.
 app = create_app(os.getenv('BOILERPLATE_ENV') or 'dev')
 app.register_blueprint(blueprint)
 
